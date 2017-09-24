@@ -1,22 +1,13 @@
 /**
   ******************************************************************************
   * @file    main.c
-  * @author  fire
-  * @version V1.0
-  * @date    
-  * @brief   测试led
-  ******************************************************************************
-  * @attention
-  *
-  * 实验平台:Crazepony(STM32F103T8U6)  
+  * @brief   测试tim2四个通道输出不同占空比的pwm波
+  * 实验平台:Crazepony(STM32T8U6)
   *
   ******************************************************************************
-  */ 
-	
+  */  
 #include "stm32f10x.h"
-#include "bsp_led.h"
-
-void Delay(__IO u32 nCount); 
+#include "bsp_pwm_output.h"
 
 /**
   * @brief  主函数
@@ -25,36 +16,13 @@ void Delay(__IO u32 nCount);
   */
 int main(void)
 {	
-	/* LED 端口初始化 */
-	LED_GPIO_Config();	 
- 
-	/* 方法2，使用固件库控制IO */
+	
+	/* TIM2 PWM波输出初始化，并使能TIM2 PWM输出 */
+	TIM2_PWM_Init();
+	
 	while (1)
 	{
-		LED1( ON );			  // 亮
-		Delay(0x07FFFF);
-		LED1( OFF );		  // 灭
-	
-		
-		LED2( ON );			  // 亮
-		Delay(0x07FFFF);
-		LED2( OFF );		  // 灭
-	
-		
-		LED3( ON );			  // 亮
-		Delay(0x07FFFF);
-		LED3( OFF );		  // 灭
-	
-		
-		LED4( ON );			  // 亮
-		Delay(0x07FFFF);
-		LED4( OFF );		  // 灭
+
 	}
-
-}
-
-void Delay(__IO uint32_t nCount)	 //简单的延时函数
-{
-	for(; nCount != 0; nCount--);
 }
 /*********************************************END OF FILE**********************/
