@@ -4,11 +4,11 @@
   * @author  fire
   * @version V1.0
   * @date    2013-xx-xx
-  * @brief   ledÓ¦ÓÃº¯Êý½Ó¿Ú
+  * @brief   ledåº”ç”¨å‡½æ•°æŽ¥å£
   ******************************************************************************
   * @attention
   *
-  * ÊµÑéÆ½Ì¨:Crazepony(STM32F103T8U6)  
+  * å®žéªŒå¹³å°:Crazepony(STM32F103T8U6)  
   *
   ******************************************************************************
   */
@@ -16,41 +16,41 @@
 #include "bsp_led.h"   
 
  /**
-  * @brief  ³õÊ¼»¯¿ØÖÆLEDµÄIO
-  * @param  ÎÞ
-  * @retval ÎÞ
+  * @brief  åˆå§‹åŒ–æŽ§åˆ¶LEDçš„IO
+  * @param  æ— 
+  * @retval æ— 
   */
 void LED_GPIO_Config(void)
 {		
-		/*¶¨ÒåÒ»¸öGPIO_InitTypeDefÀàÐÍµÄ½á¹¹Ìå*/
+		/*å®šä¹‰ä¸€ä¸ªGPIO_InitTypeDefç±»åž‹çš„ç»“æž„ä½“*/
 		GPIO_InitTypeDef GPIO_InitStructure;
 
 	
-		/*¿ªÆôLEDµÄÍâÉèÊ±ÖÓ*/
+		/*å¼€å¯LEDçš„å¤–è®¾æ—¶é’Ÿ*/
 		RCC_APB2PeriphClockCmd( RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB|RCC_APB2Periph_AFIO, ENABLE); 
 	
-		/*JTAG-DP ½ûÓÃ¼° SW-DP Ê¹ÄÜ;Èç¹ûÕâÀïÃ»ÓÐ½ûÓÃJTAG-DPµÄ»°£¬pb3²»»á±»µãÁÁ*/
+		/*JTAG-DP ç¦ç”¨åŠ SW-DP ä½¿èƒ½;å¦‚æžœè¿™é‡Œæ²¡æœ‰ç¦ç”¨JTAG-DPçš„è¯ï¼Œpb3ä¸ä¼šè¢«ç‚¹äº®*/
 		GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable , ENABLE);  
 	
-		/*ÉèÖÃÒý½ÅÄ£Ê½ÎªÍ¨ÓÃÍÆÍìÊä³ö*/
+		/*è®¾ç½®å¼•è„šæ¨¡å¼ä¸ºé€šç”¨æŽ¨æŒ½è¾“å‡º*/
 		GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;   
 
-		/*ÉèÖÃÒý½ÅËÙÂÊÎª50MHz */   
+		/*è®¾ç½®å¼•è„šé€ŸçŽ‡ä¸º50MHz */   
 		GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
 
-	/*Ñ¡ÔñÒª¿ØÖÆµÄÒý½Å*/															   
+	/*é€‰æ‹©è¦æŽ§åˆ¶çš„å¼•è„š*/															   
 		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8|GPIO_Pin_11;
-			/*µ÷ÓÃ¿âº¯Êý£¬³õÊ¼»¯GPIOA0*/
+			/*è°ƒç”¨åº“å‡½æ•°ï¼Œåˆå§‹åŒ–GPIOA0*/
 		GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-		/*Ñ¡ÔñÒª¿ØÖÆµÄÒý½Å*/															   
+		/*é€‰æ‹©è¦æŽ§åˆ¶çš„å¼•è„š*/															   
 		GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1|GPIO_Pin_3;
-			/*µ÷ÓÃ¿âº¯Êý£¬³õÊ¼»¯GPIOB0*/
+			/*è°ƒç”¨åº“å‡½æ•°ï¼Œåˆå§‹åŒ–GPIOB0*/
 		GPIO_Init(GPIOB, &GPIO_InitStructure);
 		
-		/* ¹Ø±ÕËùÓÐledµÆ	*/
+		/* å…³é—­æ‰€æœ‰ledç¯	*/
 		GPIO_SetBits(GPIOA,GPIO_Pin_11|GPIO_Pin_8);	 
-			/* ¹Ø±ÕËùÓÐledµÆ	*/
+			/* å…³é—­æ‰€æœ‰ledç¯	*/
 		GPIO_SetBits(GPIOB,GPIO_Pin_1|GPIO_Pin_3);	 
 }
 /*********************************************END OF FILE**********************/

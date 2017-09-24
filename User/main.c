@@ -1,28 +1,57 @@
 /**
   ******************************************************************************
   * @file    main.c
-  * @brief   ²âÊÔtim2ËÄ¸öÍ¨µÀÊä³ö²»Í¬Õ¼¿Õ±ÈµÄpwm²¨
-  * ÊµÑéÆ½Ì¨:Crazepony(STM32T8U6)
+  * @brief   æµ‹è¯•tim2å››ä¸ªé€šé“è¾“å‡ºä¸åŒå ç©ºæ¯”çš„pwmæ³¢
+  * å®éªŒå¹³å°:Crazepony(STM32T8U6)
   *
   ******************************************************************************
   */  
 #include "stm32f10x.h"
-#include "bsp_pwm_output.h"
+#include "motor.h"
+#include "bsp_usart1.h"
+#include "bsp_led.h"
 
+void Delay(__IO u32 nCount);
 /**
-  * @brief  Ö÷º¯Êı
-  * @param  ÎŞ  
-  * @retval ÎŞ
+  * @brief  ä¸»å‡½æ•°
+  * @param  æ—   
+  * @retval æ— 
   */
 int main(void)
 {	
+	LED_GPIO_Config();
 	
-	/* TIM2 PWM²¨Êä³ö³õÊ¼»¯£¬²¢Ê¹ÄÜTIM2 PWMÊä³ö */
-	TIM2_PWM_Init();
+	/*PWM TIM2 æ³¢è¾“å‡ºåˆå§‹åŒ–ï¼Œå¹¶ä½¿èƒ½TIM2 PWMè¾“å‡º */
+	MOTOR_Init();
+	
+	/* USART1 é…ç½®æ¨¡å¼ä¸º 115200 8-N-1ï¼Œä¸­æ–­æ¥æ”¶ */
+	USART1_Config();
+	
+	NVIC_Configuration();
+	uint16_t count = 0;
 	
 	while (1)
 	{
-
+		Delay(0x0FFFFF);
+		LED1( ON );	 
+		Delay(0x0FFFFF);
+		LED1( OFF );	 
+		if(count==100)
+		{
+			count = 100;
+			LED1( ON );	 
+			printf("ok");
+		}else
+		{
+			count++;
+		}
+		
 	}
+	
+	
+}
+void Delay(__IO uint32_t nCount)	 //ç®€å•çš„å»¶æ—¶å‡½æ•°
+{
+	for(; nCount != 0; nCount--);
 }
 /*********************************************END OF FILE**********************/

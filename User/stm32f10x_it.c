@@ -25,6 +25,11 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
+#include <stdio.h>
+#include "motor.h"
+
+
+uint8_t flag = 0;
 
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
@@ -137,6 +142,57 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
 
+}
+
+
+/******************************************************************************/
+/*                 STM32F10x Peripherals Interrupt Handlers                   */
+/*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
+/*  available peripheral interrupt handler's name please refer to the startup */
+/*  file (startup_stm32f10x_xx.s).                                            */
+/******************************************************************************/
+void USART1_IRQHandler(void)
+{
+	uint16_t v;
+	
+	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
+	{ 
+			
+		
+			v = USART_ReceiveData(USART1);
+		
+		Motor_Pwm(100,100,100,100);
+		
+		
+//		if(flag == 1)
+//		{
+//			Motor_Pwm(100,100,100,100);
+//			flag = 0; 
+//		}else
+//		{
+//			flag = 1;
+//			Motor_Pwm(0,0,0,0);
+//		}
+		
+//			if(v == 6 )
+//			{
+//				
+//				Motor_Pwm(600,600,600,600);
+//			}else  if(v == 5)
+//			{
+//				Motor_Pwm(500,500,500,500);
+//			}
+//			else  if(v == 1)
+//			{
+//				Motor_Pwm(100,100,100,100);
+//			}
+//	  	printf( "%x", v );    //将接受到的数据直接返回打印
+//			printf( "%x", 999 );    //将接受到的数据直接返回打印
+//			printf( "%x", 0xfe );    //将接受到的数据直接返回打印
+//			printf( "2112212" );    //将接受到的数据直接返回打印
+			
+	} 
+	 
 }
 
 /******************************************************************************/
