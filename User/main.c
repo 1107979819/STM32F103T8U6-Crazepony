@@ -7,10 +7,10 @@
   ******************************************************************************
   */  
 #include "stm32f10x.h"
-#include "motor.h"
-#include "bsp_usart1.h"
-#include "bsp_led.h"
-
+#include "Motor.h"
+#include "Uart1.h"
+#include "Led.h"
+#include "BT.h"
 void Delay(__IO u32 nCount);
 /**
   * @brief  主函数
@@ -19,33 +19,35 @@ void Delay(__IO u32 nCount);
   */
 int main(void)
 {	
+
+	
+	
 	LED_GPIO_Config();
+	
+		/* USART1 配置模式为 115200 8-N-1，中断接收 */
+	USART1_Config();
+	
+	/*蓝牙模块电源配置*/
+	BT_PowerInit();
+	
+	/*中断配置*/
+	NVIC_Configuration();
 	
 	/*PWM TIM2 波输出初始化，并使能TIM2 PWM输出 */
 	MOTOR_Init();
 	
-	/* USART1 配置模式为 115200 8-N-1，中断接收 */
-	USART1_Config();
-	
-	NVIC_Configuration();
-	uint16_t count = 0;
-	
+	Delay(0xFFFFFF);
+
 	while (1)
 	{
 		Delay(0x0FFFFF);
 		LED1( ON );	 
+		LED2( ON );	 
 		Delay(0x0FFFFF);
 		LED1( OFF );	 
-		if(count==100)
-		{
-			count = 100;
-			LED1( ON );	 
-			printf("ok");
-		}else
-		{
-			count++;
-		}
+		LED2( OFF );	 
 		
+		printf("ok");
 	}
 	
 	

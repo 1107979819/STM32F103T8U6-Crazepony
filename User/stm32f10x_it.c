@@ -26,7 +26,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
 #include <stdio.h>
-#include "motor.h"
+#include "Motor.h"
+#include "Led.h"
 
 
 uint8_t flag = 0;
@@ -157,11 +158,15 @@ void USART1_IRQHandler(void)
 	
 	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET)
 	{ 
+				
+			LED3_TOGGLE;	
+			LED4( OFF );	 
 			
 		
 			v = USART_ReceiveData(USART1);
 		
-		Motor_Pwm(100,100,100,100);
+		//	Motor_Pwm(100,100,100,100);
+			
 		
 		
 //		if(flag == 1)

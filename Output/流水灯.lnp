@@ -27,9 +27,10 @@
 "..\..\output\stm32f10x_wwdg.o"
 "..\..\output\main.o"
 "..\..\output\stm32f10x_it.o"
-"..\..\output\bsp_led.o"
 "..\..\output\motor.o"
-"..\..\output\bsp_usart1.o"
+"..\..\output\bt.o"
+"..\..\output\led.o"
+"..\..\output\uart1.o"
 --library_type=microlib --strict --scatter "..\..\Output\Á÷Ë®µÆ.sct"
 --summary_stderr --info summarysizes --map --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

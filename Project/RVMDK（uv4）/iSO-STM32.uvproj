@@ -374,7 +374,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F10X_HD, USE_STDPERIPH_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\CMSIS;..\..\User;..\..\Libraries\FWlib\inc;..\..\User\PwmOutput</IncludePath>
+              <IncludePath>..\..\Libraries\CMSIS;..\..\User;..\..\Libraries\FWlib\inc;..\..\User\Crazepony\h</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -599,9 +599,24 @@
               <FilePath>..\..\User\stm32f10x_it.h</FilePath>
             </File>
             <File>
-              <FileName>bsp_pwm_output.c</FileName>
+              <FileName>bsp_led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\User\PwmOutput\bsp_pwm_output.c</FilePath>
+              <FilePath>..\..\User\Crazepony\bsp_led.c</FilePath>
+            </File>
+            <File>
+              <FileName>bsp_usart1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\Crazepony\bsp_usart1.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\Crazepony\motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>BT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\User\Crazepony\BT.c</FilePath>
             </File>
           </Files>
         </Group>
